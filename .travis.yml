@@ -20,3 +20,9 @@ after_success:
   - git remote add deploy dokku@kvstage.cloud:holdopen
   - git config --global push.default simple
   - git push deploy master
+
+deploy:
+  provider: script
+  script: bash scripts/deploy.sh production
+  on:
+    branch: master
