@@ -1,5 +1,5 @@
 #!/bin/sh
-
+pwd
 eval "$(ssh-agent -s)"
 chmod 600 ../.travis/deploy.key
 ssh-add ../.travis/deploy.key
