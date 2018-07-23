@@ -16,7 +16,7 @@ const serializer = new Serializer(attributeMap);
 
 class ListingSerializer {
   static serialize(listing) {
-    return serializer.serialize(listing);
+    return serializer.serialize(listing.toObject().StandardFields);
   }
 }
 
