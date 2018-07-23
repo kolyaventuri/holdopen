@@ -4,6 +4,7 @@ const Listing = require('../../../app/models/Listing');
 const spark = require('../../../app/services/spark');
 
 let total = 0;
+let totalPulled = 0;
 
 const start = async (number, page) => {
   try {
@@ -17,21 +18,21 @@ const start = async (number, page) => {
 
 const pull = async (number, page) => {
   let listings = await spark.search({ _page: page });
+  
+  totalPulled += listings.Results.length;
 
   for(let listing of listings.Results) {
     let listingModel = new Listing(listing);
     listingModel.save().then((listing) => {
       console.log(`${listing.StandardFields.UnparsedFirstLineAddress}. . . `);
+      total += 1;
+      if(total >= number) return stop();
     }).catch(err => {
       console.error(err);
     });
-
-    total += 1;
-
-    if(total >= number) return stop();
   }
 
-  return await pull(number, page + 1);
+  if(totalPulled < number) return pull(number, page + 1);
 };
 
 const stop = () => {
