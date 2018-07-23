@@ -41,6 +41,7 @@ describe('Serializer', () => {
     const serializer = new Serializer(attributeMap);
 
     const serialized = serializer.serialize(object);
+    console.log(serialized);
 
     expect(serialized).to.not.have.property('foo');
     expect(serialized).to.not.have.property('bar');
