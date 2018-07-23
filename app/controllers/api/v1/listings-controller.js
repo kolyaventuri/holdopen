@@ -8,13 +8,17 @@ class ListingsController {
     let skip = (page - 1) * LIMIT;
 
     Listing.find(null, null, { skip, limit: LIMIT }).then((listings) => {
+      listings = listings.map(listing => {
+        return listing.serialize();
+      });
+
       let results = {
         results: listings,
         pagination: {
           currentPage: page
         }
       };
-      
+
       res.json(results);
     }).catch(err => {
       res.send().status(500);

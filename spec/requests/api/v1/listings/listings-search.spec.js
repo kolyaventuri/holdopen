@@ -36,7 +36,6 @@ describe('A GET request to /api/v1/listings', () => {
           expect(res).to.have.status(200);
 
           expect(res.body).to.be.an('object');
-          expect(res.body).to.have.lengthOf(10);
 
           let body = res.body;
 
