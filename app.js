@@ -1,6 +1,18 @@
+const fs = require('fs');
+const path = require('path');
+
+if (process.env.NODE_ENV !== 'production') {
+  if(fs.existsSync(path.join(__dirname, '.env'))) {
+    const dotenv = require('dotenv');
+    const result = dotenv.config();
+    if (result.error) {
+      throw result.error;
+    }
+  }
+}
+
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 

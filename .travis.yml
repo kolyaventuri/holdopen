@@ -7,8 +7,7 @@ node_js:
 cache:
   directories:
   - node_modules
-script:
-- npm test
+script: bash scripts/run-tests.sh
 branches:
   only:
     - master
