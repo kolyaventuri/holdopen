@@ -8,4 +8,12 @@ describe('Listing Model', () => {
       expect(err).to.not.exist;
     });
   });
+
+  it('should accept arbitrary data', () => {
+    let listing = new Listing({foo: 'bar', bar: 'foo'});
+
+    listing.validate((err) => {
+      expect(err).to.not.exist;
+    });
+  });
 });
