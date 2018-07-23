@@ -9,7 +9,7 @@ const attributeMap = {
   'TotalBeds': 'BedsTotal',
   'GarageSpaces': 'GarageSpaces',
   'LotSize': 'LotSizeAcres',
-  'Sqft': 'BuildingAreaTotal'
+  'Sqft': 'BuildingAreaTotal',
 };
 
 const serializer = new Serializer(attributeMap);
