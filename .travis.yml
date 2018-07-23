@@ -19,4 +19,6 @@ deploy:
     branch: master
 before_script:
   - npm i
-  - npm run spark:pull -n 25
+  - npm run spark:pull -- -n 25
+after_script:
+  - npm run spark:destroy -- -f 

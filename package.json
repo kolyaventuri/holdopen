@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "test": "mocha ./spec/helpers/test_setup.js --require ./spec/helpers/spec_helper.js --recursive \"./spec/**/*.spec.js\" --exit --no-timeouts",
     "test:single": "mocha ./spec/helpers/test_setup.js --require ./spec/helpers/spec_helper.js --exit --no-timeouts",
-    "spark:pull": "node ./tasks/spark/pull-homes"
+    "spark:pull": "node ./tasks/spark/pull-homes",
+    "spark:destroy": "node ./tasks/spark/destroy-homes"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
