@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 const SignatureGenerator = require('../../../app/services/spark/lib/signature-generator');
-let generator = new SignatureGenerator('secret', 'key');
+let generator = new SignatureGenerator('key', 'secret');
 
 describe('Spark signature generator', () => {
   it('generates valid signatures', () => {

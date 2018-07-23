@@ -17,7 +17,7 @@ const stringifyParams = (params) => {
 };
 
 class SignatureGenerator {
-  constructor(secret, key) {
+  constructor(key, secret) {
     this.secret = secret;
     this.key = key;
   }

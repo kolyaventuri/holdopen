@@ -1,5 +1,5 @@
 const TokenGenerator = require('../../../app/services/spark/lib/token-generator');
-let generator = new TokenGenerator('secret', 'key');
+let generator = new TokenGenerator(process.env.SPARK_KEY, process.env.SPARK_SECRET);
 
 describe('Spark token generator', () => {
   it('generates a token', async () => {
