@@ -9,7 +9,7 @@ const headers = {
 const API = new APIService(BASE_URL, headers);
 
 const makeRequest = (endpoint, opts) => {
-
+  
 };
 
 module.exports = makeRequest;
