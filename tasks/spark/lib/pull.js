@@ -1,5 +1,5 @@
 const mongoose = require('../../../db/mongo');
-const Listing = require('../../../app/models/Listing');
+const Listing = require('../../../app/models/listing');
 
 const spark = require('../../../app/services/spark');
 
