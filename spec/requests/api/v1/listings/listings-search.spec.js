@@ -10,15 +10,17 @@ describe('A GET request to /api/v1/listings', () => {
           expect(res).to.have.status(200);
 
           expect(res.body).to.be.an('object');
-          expect(res.body).to.have.lengthOf(10);
 
           let body = res.body;
 
-          expect(body[0]).to.be.an('object');
-          expect(body[0]).to.not.have.property('StandardFields');
-          expect(body[0]).to.have.property('ListPrice');
+          let results = body.results;
+          expect(results).to.be.an('array').that.has.lengthOf(10);
 
-          firstHome = body[0];
+          expect(results[0]).to.be.an('object');
+          expect(results[0]).to.not.have.property('StandardFields');
+          expect(results[0]).to.have.property('ListPrice');
+
+          firstHome = results[0];
 
           done();
         });
@@ -38,11 +40,14 @@ describe('A GET request to /api/v1/listings', () => {
 
           let body = res.body;
 
-          expect(body[0]).to.be.an('object');
-          expect(body[0]).to.not.have.property('StandardFields');
-          expect(body[0]).to.have.property('ListPrice');
+          let results = body.results;
+          expect(results).to.be.an('array').that.has.lengthOf(10);
 
-          expect(body[0]).to.not.eql(firstHome);
+          expect(results[0]).to.be.an('object');
+          expect(results[0]).to.not.have.property('StandardFields');
+          expect(results[0]).to.have.property('ListPrice');
+
+          expect(results[0]).to.not.eql(firstHome);
 
           done();
         });
