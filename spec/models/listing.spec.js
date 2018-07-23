@@ -16,4 +16,13 @@ describe('Listing Model', () => {
       expect(err).to.not.exist;
     });
   });
+
+  it('can be serialized', () => {
+    let listing = new Listing({StandardFields: { ListPrice: 1000 }});
+
+    let serialized = listing.serialize();
+    
+    expect(serialized).to.have.property('ListPrice').that.eqls(1000);
+    expect(serialized).to.not.have.property('StandardFields');
+  });
 });
