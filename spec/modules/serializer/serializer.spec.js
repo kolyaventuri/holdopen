@@ -38,7 +38,7 @@ describe('Serializer', () => {
       }
     };
 
-    const serializer = new Serialize(attributeMap);
+    const serializer = new Serializer(attributeMap);
 
     const serialized = serializer.serialize(object);
 
@@ -76,7 +76,7 @@ describe('Serializer', () => {
       ]
     };
 
-    const serializer = new Serialize(attributeMap);
+    const serializer = new Serializer(attributeMap);
 
     const serialized = serializer.serialize(object);
 
