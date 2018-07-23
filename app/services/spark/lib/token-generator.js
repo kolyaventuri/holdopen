@@ -25,7 +25,10 @@ class TokenGenerator {
       throw new Error('Something went wrong authorizing application.');
     }
 
-    return result.D.Results[0].AuthToken;
+    return {
+      token:   result.D.Results[0].AuthToken,
+      expires: new Date(result.D.Results[0].Expires)
+    };
   }
 }
 

@@ -5,6 +5,9 @@ describe('Spark token generator', () => {
   it('generates a token', async () => {
     let result = await generator.getToken();
 
-    expect(result).to.be.a('string');
+    expect(result).to.be.an('object');
+    
+    expect(result).to.have.property('token').that.is.a('string');
+    expect(result).to.have.property('expires').that.is.a('date');
   });
 });
