@@ -1,3 +1,5 @@
+const Serializer = require('../../../lib/serializer');
+
 const attributeMap = {
   'ListPrice': 'ListPrice',
   'MLSId': 'ListingId',
@@ -10,9 +12,11 @@ const attributeMap = {
   'Sqft': 'BuildingAreaTotal'
 };
 
+const serializer = new Serializer(attributeMap);
+
 class ListingSerializer {
   static serialize(listing) {
-    return listing;
+    return serializer.serialize(listing);
   }
 }
 
