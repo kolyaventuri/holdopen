@@ -15,6 +15,10 @@ const rl = readline.createInterface({
 let number = args.n || args.number || args.num;
 let force = !!args.f || !!args.force;
 
+if(args.env) {
+  require('dotenv').config();
+}
+
 const doRun = () => {
   if(number && !Number.isFinite(number)) {
     console.error(new Error('Provided value must be a number.'));
@@ -22,8 +26,9 @@ const doRun = () => {
   }
 
   console.log('Lets go!');
+  console.log(`Pulling ${number || 'ALL'} listings.`);
 
-  process.exit(0);
+  require('./lib/pull')(number);
 };
 
 if(!number && !force) {
