@@ -10,7 +10,7 @@ describe('Listing Model', () => {
   });
 
   it('should accept arbitrary data', () => {
-    let listing = new Listing({foo: 'bar', bar: 'foo'});
+    let listing = new Listing({foo: 'bar', bar: 'foo', nested: { yes: true } });
 
     listing.validate((err) => {
       expect(err).to.not.exist;

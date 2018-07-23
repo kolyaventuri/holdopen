@@ -11,16 +11,37 @@ const options = {
   _expand: 'PrimaryPhoto'
 };
 
+const start = async (number, page) => {
+  try {
+    await mongoose.dropCollection('listings');
+  } catch(err) {
+    // the collection doesn't exist, we're good to go
+  }
+  
+  return await pull(number, page);
+}
+
 const pull = async (number, page) => {
   page = page || 1;
-  let opts = Object.assign(options, { _page: page })
-  let listings = await spark.makeRequest('/listings', opts);
+  let listings = await spark.search({ _page: page });
 
-  console.log(Object.keys(listings.D));
-
-  for(let listing of listings.D.Results) {
+  for(let listing of listings.Results) {
+    let listingModel = new Listing(listing);
+    listingModel.save().then((listing) => {
+      console.log(`${listing.StandardFields.UnparsedFirstLineAddress}. . . `);
+    }).catch(err => {
+      console.error(err);
+    });
     total += 1;
+    if(total >= number) return stop();
   }
+
+  return await pull(number, page + 1);
 };
 
-module.exports = pull;
+const stop = () => {
+  console.log('All done!');
+  process.exit(0);
+};
+
+module.exports = start;
