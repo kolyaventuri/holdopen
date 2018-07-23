@@ -28,7 +28,7 @@ describe('A GET request to /api/v1/listings', () => {
   });
 
   describe('with a pagination parameter', () => {
-    it('returns the first 10 homes in the database', (done) => {
+    it('returns the next 10 homes in the database', (done) => {
       chai.request(app)
         .get('/api/v1/listings?page=2')
         .end((err, res) => {
