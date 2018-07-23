@@ -1,7 +1,7 @@
 const Serializer = require('../../../lib/serializer');
 
 const attributeMap = {
-  'foo': 'otherFoo'
+  'otherFoo': 'foo'
 };
 
 const serializer = new Serializer(attributeMap);
