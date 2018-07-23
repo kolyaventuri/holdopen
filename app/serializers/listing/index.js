@@ -2,14 +2,19 @@ const Serializer = require('../../../lib/serializer');
 
 const attributeMap = {
   'ListPrice': 'ListPrice',
-  'MLSId': 'ListingId',
-  'Address': 'UnparsedAddress',
-  'FirstLineAddress': 'UnparsedFirstLineAddress',
-  'TotalBaths': 'BathsTotal',
-  'TotalBeds': 'BedsTotal',
+  'ListingId': 'MLSId',
+  'UparsedAddress': 'Address',
+  'UnparsedFirstLineAddress': 'FirstLineAddress',
+  'BathsTotal': 'TotalBaths',
+  'BedsTotal': 'TotalBeds',
   'GarageSpaces': 'GarageSpaces',
-  'LotSize': 'LotSizeAcres',
-  'Sqft': 'BuildingAreaTotal',
+  'LotSizeAcres': 'LotSizeAcres',
+  'BuildingAreaTotal': 'Sqft',
+  'Photos': [
+    {
+      'Id': 'Id'
+    }
+  ]
 };
 
 const serializer = new Serializer(attributeMap);
