@@ -11,10 +11,9 @@ const search = async (params) => {
   params = params || {};
   let filter = buildFilter(params);
 
-  let opts = Object.assign(options, {
-    _filter: filter,
-    _page: params.page || 1
-  });
+  let opts = Object.assign({
+    _page: params._page
+  }, options);
 
   let results = await makeRequest('/listings', opts);
 

@@ -5,24 +5,17 @@ const spark = require('../../../app/services/spark');
 
 let total = 0;
 
-const options = {
-  _limit: 25,
-  _pagination: 1,
-  _expand: 'PrimaryPhoto'
-};
-
 const start = async (number, page) => {
   try {
     await mongoose.dropCollection('listings');
   } catch(err) {
     // the collection doesn't exist, we're good to go
   }
-  
-  return await pull(number, page);
+
+  return await pull(number, page || 1);
 }
 
 const pull = async (number, page) => {
-  page = page || 1;
   let listings = await spark.search({ _page: page });
 
   for(let listing of listings.Results) {
@@ -32,7 +25,9 @@ const pull = async (number, page) => {
     }).catch(err => {
       console.error(err);
     });
+
     total += 1;
+
     if(total >= number) return stop();
   }
 
