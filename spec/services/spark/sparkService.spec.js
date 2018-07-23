@@ -10,4 +10,11 @@ describe('Spark service', () => {
     expect(Spark.buildFilter(params2)).to.include(`PostalCode Eq '${params2.zip}' And ListPrice Ge ${params2.minPrice}`);
     expect(Spark.buildFilter(params3)).to.include(`PostalCode Eq '${params3.zip}' And ListPrice Ge ${params3.minPrice} And ListPrice Le ${params3.maxPrice}`);
   });
+
+  it('can make requests', async () => {
+    let result = await Spark.makeRequest('/listings');
+
+    expect(result).to.be.an('object').that.has.property('D');
+    expect(result.D.Success).to.be.true;
+  });
 });
