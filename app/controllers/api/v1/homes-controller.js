@@ -1,5 +1,5 @@
 class HomesController {
-  index(req, res, next) {
+  static index(req, res, next) {
     res.send('');
   }
 }
