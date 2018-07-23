@@ -21,11 +21,11 @@ class TokenGenerator {
   async getToken() {
     let result = await API.post('/session', { ApiKey: this.key, ApiSig: this.API_SIG });
 
-    if(!data['D'].Success) {
+    if(!result['D'].Success) {
       throw new Error('Something went wrong authorizing application.');
     }
 
-    return data;
+    return result.D.Results[0].AuthToken;
   }
 }
 
