@@ -1,10 +1,10 @@
-describe('A GET request to /api/v1/homes', () => {
+describe('A GET request to /api/v1/listings', () => {
   let firstHome = null;
 
   describe('with no pagination parameter', () => {
     it('returns the first 10 homes in the database', (done) => {
       chai.request(app)
-        .get('/api/v1/homes')
+        .get('/api/v1/listings')
         .end((err, res) => {
           expect(err).to.be.null;
           expect(res).to.have.status(200);
@@ -17,7 +17,7 @@ describe('A GET request to /api/v1/homes', () => {
           expect(body[0]).to.be.an('object');
           expect(body[0]).to.not.have.property('StandardFields');
           expect(body[0]).to.have.property('ListPrice');
-          
+
           firstHome = body[0];
 
           done();
@@ -28,7 +28,7 @@ describe('A GET request to /api/v1/homes', () => {
   describe('with a pagination parameter', () => {
     it('returns the first 10 homes in the database', (done) => {
       chai.request(app)
-        .get('/api/v1/homes?page=2')
+        .get('/api/v1/listings?page=2')
         .end((err, res) => {
           expect(err).to.be.null;
           expect(res).to.have.status(200);
