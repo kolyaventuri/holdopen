@@ -12,6 +12,7 @@ const search = async (params) => {
   let filter = buildFilter(params);
 
   let opts = Object.assign({
+    _filter: filter,
     _page: params._page
   }, options);
 
