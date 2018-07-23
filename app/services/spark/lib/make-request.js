@@ -20,7 +20,7 @@ const makeRequest = async (endpoint, opts) => {
   opts = opts || {};
 
   const token = await tokenGenerator.getToken();
-  const signature = signatureGenerator.generate(endpoint, opts, token);
+  const signature = signatureGenerator.generate(endpoint, opts, token.token);
 
   opts['ApiSig']    = signature;
   opts['AuthToken'] = token.token;
