@@ -17,4 +17,10 @@ describe('Spark service', () => {
     expect(result).to.be.an('object').that.has.property('D');
     expect(result.D.Success).to.be.true;
   });
+
+  it('can search for homes', async () => {
+    let listings = await Spark.search();
+
+    expect(listings).to.be.an('object').that.has.property('Results').that.is.an('array');
+  });
 });
