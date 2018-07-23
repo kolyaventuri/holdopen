@@ -21,6 +21,6 @@ describe('Spark service', () => {
   it('can search for homes', async () => {
     let listings = await Spark.search();
 
-    expect(result).to.be.an('object').that.has.property('Results').that.is.an('array');
+    expect(listings).to.be.an('object').that.has.property('Results').that.is.an('array');
   });
 });
