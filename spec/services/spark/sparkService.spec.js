@@ -1,4 +1,4 @@
-const Spark = require('../../app/services/spark');
+const Spark = require('../../../app/services/spark');
 
 describe('Spark service', () => {
   it('can build filters', () => {
