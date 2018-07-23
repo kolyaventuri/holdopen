@@ -1,4 +1,4 @@
-const APIService = require('../../../lib/api-service');
+const APIService = require('../../../../lib/api-service');
 const BASE_URL = "https://sparkapi.com/v1";
 
 const headers = {
