@@ -13,7 +13,7 @@ const search = async (params) => {
 
   let opts = Object.assign({
     _filter: filter,
-    _page: params._page
+    _page: params._page || 1
   }, options);
 
   let results = await makeRequest('/listings', opts);
