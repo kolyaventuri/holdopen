@@ -1,11 +1,22 @@
 const APIService = require('../../../lib/api-service');
 
 describe('APIService', () => {
-  it('makes a get request', async () => {
-    let API = new APIService('https://jsonplaceholder.typicode.com', {});
+  const API = new APIService('https://jsonplaceholder.typicode.com', {});
 
-    let result = await API.get('/posts/1');
+  it('makes a get request', async () => {
+    const result = await API.get('/posts/1');
 
     expect(result).to.be.an('object');
+  });
+
+  it('makes a post request', async() => {
+    const data = {
+      title: 'foo',
+      body: 'bar'
+    };
+    
+    const result = await API.post('/posts', data);
+
+    expect(result).to.be.an('object').that.has.property('title').that.eqls(data.title);
   });
 });
