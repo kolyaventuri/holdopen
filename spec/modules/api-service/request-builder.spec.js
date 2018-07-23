@@ -2,7 +2,7 @@ const RequestBuilder = require('../../../lib/api-service/request-builder');
 
 describe('Request Builder', () => {
   it('should be able to build request options', () => {
-    let builder = RequestBuilder.register('AURL', {h: 1});
+    let builder = new RequestBuilder('AURL', {h: 1});
 
     let result = builder.build('/end', {q:2});
 
