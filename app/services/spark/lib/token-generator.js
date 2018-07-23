@@ -22,7 +22,7 @@ class TokenGenerator {
 
   async getToken() {
     if(this.token.expires > new Date()) return this.token;
-    
+
     let result = await API.post('/session', { ApiKey: this.key, ApiSig: this.API_SIG });
 
     if(!result['D'].Success) {

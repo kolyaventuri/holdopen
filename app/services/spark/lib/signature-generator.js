@@ -22,7 +22,7 @@ class SignatureGenerator {
     this.key = key;
   }
 
-  generateSignature(endpoint, params, token) {
+  generate(endpoint, params, token) {
     params = params || {};
 
     const paramString = stringifyParams(params);
