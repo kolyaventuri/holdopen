@@ -20,7 +20,7 @@ describe('Request Builder', () => {
 
     expect(result).to.eql({
       method: 'POST',
-      uri: 'AURL',
+      uri: 'AURL/end',
       headers: {
         h: 1
       },
