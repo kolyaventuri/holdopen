@@ -56,9 +56,11 @@ describe('Serializer', () => {
   it('can deeply serialize arrays', () => {
     const attributeMap = {
       foo: 'otherFoo',
-      abc: {
-        foo: 'otherFoo'
-      }
+      abc: [
+        {
+          foo: 'otherFoo'
+        }
+      ]
     };
 
     const object = {
@@ -88,7 +90,7 @@ describe('Serializer', () => {
     expect(serialized).to.have.property('abc').that.is.an('array');
 
     for(let item of serialized.abc) {
-      expect(item).to.have.property('otherFoo').that.eqls(object.abc.foo);
+      expect(item).to.have.property('otherFoo').that.eqls(object.abc[0].foo);
       expect(item).to.not.have.property('bar');
     }
 
