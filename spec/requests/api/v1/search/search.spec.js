@@ -10,7 +10,8 @@ describe('A GET request to /api/v1/search', () => {
 
           let body = res.body;
 
-          expect(body.error).to.not.be.null.and.eql('No query provided.');
+          expect(body.error).to.not.be.null;
+          expect(body.error).to.eql('No query provided.');
           done();
         });
     });
