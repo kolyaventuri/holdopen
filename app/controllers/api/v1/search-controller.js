@@ -11,18 +11,11 @@ class SearchController {
 
     let formattedQuery = QueryParser.parse(query);
 
-    let searchResults = await Spark.search(formattedQuery);
+    let listings = await Listing.where(formattedQuery);
 
-    let listings = searchResults.Results.map(listing => {
-      return new Listing(listing).serialize();
-    });
+    let results = listings.map(listing => listing.serialize());
 
-    let results = {
-      results: listings,
-      pagination: searchResults.Pagination
-    };
-
-    res.json(results);
+    res.json({results});
   }
 }
 

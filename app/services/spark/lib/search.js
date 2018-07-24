@@ -9,6 +9,7 @@ let options = {
 
 const search = async (params) => {
   params = params || {};
+
   let filter = buildFilter(params);
 
   let opts = Object.assign({

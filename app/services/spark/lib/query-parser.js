@@ -4,10 +4,11 @@ class QueryParser {
   static parse(query) {
     let isZip = zipRegex.test(query);
     if(isZip) {
-      return { zip: query };
+      return { 'StandardFields.PostalCode': query };
     }
 
-    return { address: query };
+    let regexQuery = new RegExp(`.*${query}.*`);
+    return { 'StandardFields.UnparsedAddress': regexQuery };
   }
 }
 
