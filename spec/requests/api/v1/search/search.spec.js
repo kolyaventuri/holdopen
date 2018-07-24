@@ -18,7 +18,7 @@ describe('A GET request to /api/v1/search', () => {
   });
 
   describe('with a zip code parameter', () => {
-    it('returns the MLS search results for that zip code', (done) => {
+    it('returns the serialized MLS search results for that zip code', (done) => {
       chai.request(app)
         .get('/api/v1/search?q=87114')
         .end((err, res) => {
@@ -34,6 +34,9 @@ describe('A GET request to /api/v1/search', () => {
           expect(results).to.be.an('array');
 
           expect(results[0]).to.be.an('object');
+          expect(results[0]).to.not.have.property('StandardFields');
+
+          expect(results[0]).to.have.property('MLSId');
 
           firstHome = results[0];
           done();
