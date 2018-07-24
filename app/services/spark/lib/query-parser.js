@@ -6,6 +6,8 @@ class QueryParser {
     if(isZip) {
       return { zip: query };
     }
+
+    return { address: query };
   }
 }
 
