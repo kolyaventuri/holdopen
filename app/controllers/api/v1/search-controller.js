@@ -1,7 +1,6 @@
-const Spark = require('../../../services/spark');
 const QueryParser = require('../../../services/spark/lib/query-parser');
 const Listing = require('../../../models/listing');
- 
+
 class SearchController {
   static async index(req, res, next) {
     let query = req.query.q;
