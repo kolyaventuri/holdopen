@@ -12,7 +12,12 @@ const attributeMap = {
   'BuildingAreaTotal': 'Sqft',
   'Photos': [
     {
-      'Id': 'Id'
+      'Name': 'Name',
+      'Caption': 'Caption',
+      'UriThumb': 'UriThumb',
+      'Uri640': 'Uri640',
+      'Uri2048': 'Uri2048',
+      'UriLarge': 'UriLarge'
     }
   ]
 };
