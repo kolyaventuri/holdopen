@@ -8,5 +8,12 @@ describe('QueryParser', () => {
 
       expect(result).to.eql(expected);
     });
+
+    it('treats other things like a partial address', () => {
+      let result = QueryParser.parse('other');
+      let expected = { address: 'other' };
+
+      expect(result).to.eql(expected);
+    });
   });
 });
