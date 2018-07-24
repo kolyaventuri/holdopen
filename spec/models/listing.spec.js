@@ -18,11 +18,12 @@ describe('Listing Model', () => {
   });
 
   it('can be serialized', () => {
-    let listing = new Listing({StandardFields: { ListPrice: 1000 }});
+    let listing = new Listing({StandardFields: { ListPrice: 1000, ListingId: 20 }});
 
     let serialized = listing.serialize();
-    
+
     expect(serialized).to.have.property('ListPrice').that.eqls(1000);
+    expect(serialized).to.have.property('MLSId').that.eqls(20);
     expect(serialized).to.not.have.property('StandardFields');
   });
 });
