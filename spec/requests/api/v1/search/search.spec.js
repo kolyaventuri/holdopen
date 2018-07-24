@@ -15,7 +15,7 @@ describe('A GET request to /api/v1/listings', () => {
 
           let results = body.results;
 
-          exepect(results).to.be.an('array');
+          expect(results).to.be.an('array');
 
           expect(results[0]).to.be.an('object');
 
