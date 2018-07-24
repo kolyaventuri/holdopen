@@ -20,7 +20,8 @@ class SearchController {
     let results = {
       results: listings,
       pagination: searchResults.Pagination
-    }
+    };
+
     res.json(results);
   }
 }
