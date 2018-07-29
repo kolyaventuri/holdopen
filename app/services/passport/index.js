@@ -23,7 +23,7 @@ module.exports = (app) => {
       let user = null;
       try {
         user = await User.findOne( { googleId: profile.id });
-        
+
         if(user) return cb(null, user);
 
         user = await User.create(serializedProfile(profile));
@@ -52,8 +52,9 @@ module.exports = (app) => {
     passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 
   app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
+    passport.authenticate('google', { successReturnToOrRedirect: '/dashboard', failureRedirect: '/login' }),
     (req, res) => {
+
       res.redirect('/');
     });
 };
