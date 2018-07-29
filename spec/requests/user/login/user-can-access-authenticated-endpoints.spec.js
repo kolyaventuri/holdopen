@@ -1,7 +1,23 @@
 const passport = require('passport');
 
-describe('Google strategy', () => {
-  var strategy = passport._strategies;
+describe('Accessing an authenticated endpoint', () => {
+  before(() => {
+    var strategy = passport._strategies['google'];
 
-  console.log(strategy);
+    strategy._profile = require('./mock/profile');
+  });
+
+  it('shows me my name', (done) => {
+    chai.request(app)
+      .get('/auth/google')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(200);
+
+        let $ = cheerio.load(res.body);
+
+        expect($('body')).to.have.text('Welcome, John Doe');
+        done();
+      });
+  });
 });
