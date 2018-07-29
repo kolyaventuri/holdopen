@@ -33,6 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+require('./app/services/passport')(app);
+
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
 
@@ -40,8 +42,6 @@ app.use('/api', apiRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
-require('./app/services/passport')(app);
 
 // error handler
 app.use(function(err, req, res, next) {

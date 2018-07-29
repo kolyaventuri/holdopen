@@ -14,10 +14,17 @@ describe('Accessing an authenticated endpoint', () => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
 
-        let $ = cheerio.load(res.body);
+        chai.request(app)
+          .get('/dashboard')
+          .end((err, res) => {
+            expect(err).to.be.null;
+            expect(res).to.have.status(200);
 
-        expect($('body')).to.have.text('Welcome, John Doe');
-        done();
+            let $ = cheerio.load(res.body);
+
+            expect($('body')).to.have.text('Welcome, John Doe');
+            done();
+          });
       });
   });
 });
