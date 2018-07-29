@@ -1,6 +1,7 @@
 class DashboardController {
   static index(req, res, next) {
-    res.send('Hi!');
+    console.log(req.user);
+    res.render('dashboard/index', { user: req.user } );
   }
 }
 

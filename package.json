@@ -20,6 +20,7 @@
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
+    "passport-mocked": "^1.2.0",
     "pug": "2.0.0-beta11",
     "request": "^2.87.0",
     "request-promise": "^4.2.2"
@@ -31,7 +32,6 @@
     "cheerio": "^1.0.0-rc.2",
     "dotenv": "^6.0.0",
     "mocha": "^5.2.0",
-    "passport-mock": "0.0.3",
     "pryjs": "^1.0.3"
   }
 }
