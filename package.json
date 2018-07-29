@@ -28,6 +28,7 @@
     "chai-http": "^4.0.0",
     "dotenv": "^6.0.0",
     "mocha": "^5.2.0",
+    "passport-mock": "0.0.3",
     "pryjs": "^1.0.3"
   }
 }
