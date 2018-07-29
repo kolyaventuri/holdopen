@@ -7,7 +7,8 @@ const filterTypes = {
   'minBaths': 'BathsTotal Ge',
   'maxBaths': 'BathsTotal Le',
   'minSqft': 'BuildingAreaTotal Ge',
-  'maxSqft': 'BuildingAreaTotal Le'
+  'maxSqft': 'BuildingAreaTotal Le',
+  'address': 'StreetAddress Eq'
 };
 
 const buildFilter = (params) => {
@@ -20,7 +21,7 @@ const buildFilter = (params) => {
     let type = filterTypes[key];
     if(!type) continue;
 
-    if(key == 'zip') value = `'${value}'`;
+    if(key == 'zip' || key == 'address') value = `'${value}'`;
 
     filters.push(`${type} ${value}`);
   }
