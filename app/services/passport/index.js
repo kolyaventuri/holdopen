@@ -3,6 +3,17 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 const User = require('../../models/user');
 
+const serializedProfile = (profile) => {
+  return {
+    googleId: profile.id,
+    displayName: profile.displayName,
+    name: profile.name,
+    photos: profile.photos,
+    accessToken,
+    refreshToken
+  };
+};
+
 module.exports = (app) => {
   passport.use(new GoogleStrategy({
       clientID: process.env.GOOGLE_CLIENT_ID,
@@ -11,11 +22,11 @@ module.exports = (app) => {
     }, async (accessToken, refreshToken, profile, cb) => {
       let user = null;
       try {
-        user = await User.findOne( { id: profile.id });
-
+        user = await User.findOne( { googleId: profile.id });
+        
         if(user) return cb(null, user);
 
-        user = await User.create(profile);
+        user = await User.create(serializedProfile(profile));
 
         return cb(null, user);
       } catch (err) {
@@ -23,6 +34,16 @@ module.exports = (app) => {
       }
     })
   );
+
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+      done(err, user);
+    });
+  });
 
   app.use(passport.initialize());
   app.use(passport.session());
