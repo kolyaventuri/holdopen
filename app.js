@@ -23,6 +23,7 @@ require('./db/mongo');
 const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api');
 
+var sassMiddleware = require('node-sass-middleware');
 var app = express();
 
 app.use(session({secret: process.env.SESSION_SECRET || 'generictoken001' }));
@@ -35,6 +36,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(sassMiddleware({
+  src: path.join(__dirname, 'private'),
+  dest: path.join(__dirname, 'public'),
+  debug: true,
+  outputStyle: 'compressed',
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./app/services/passport')(app);

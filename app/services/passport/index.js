@@ -3,7 +3,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 const User = require('../../models/user');
 
-const serializedProfile = (profile) => {
+const serializedProfile = (accessToken, refreshToken, profile) => {
   return {
     googleId: profile.id,
     displayName: profile.displayName,
@@ -26,7 +26,7 @@ module.exports = (app) => {
 
         if(user) return cb(null, user);
 
-        user = await User.create(serializedProfile(profile));
+        user = await User.create(serializedProfile(accessToken, refreshToken, profile));
 
         return cb(null, user);
       } catch (err) {
@@ -52,9 +52,14 @@ module.exports = (app) => {
     passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 
   app.get('/auth/google/callback',
-    passport.authenticate('google', { successReturnToOrRedirect: '/dashboard', failureRedirect: '/login' }),
+    passport.authenticate('google', { successReturnToOrRedirect: '/dashboard', failureRedirect: '/' }),
     (req, res) => {
 
       res.redirect('/');
     });
+
+  app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
 };

@@ -1,0 +1,28 @@
+nav.navbar.is-transparent
+  .navbar-brand
+    a.navbar-item(href="/")
+      img(alt="HoldOpen", height='28', src="https://via.placeholder.com/112x28", width="112")
+    .navbar-burger.burger(data-target="navbarExampleTransparentExample")
+      span
+      span
+      span
+  #navbarExampleTransparentExample.navbar-menu
+    .navbar-start
+      a.navbar-item(href='/')
+        | Home
+    .navbar-end
+      if !user
+        .navbar-item
+          a.button.is-danger.is-inverted(href='/auth/google')
+            span.icon
+              i.fab.fa-google
+            span
+              | Sign in with Google
+      else
+        .navbar-item.has-dropdown.is-hoverable
+          a.navbar-link Welcome, #{user.displayName}
+          .navbar-dropdown.is-right.has-text-grey
+            a.navbar-item(href='/logout')
+              span.icon.is-small
+                i.far.fa-sign-out
+              span &nbsp;Logout
