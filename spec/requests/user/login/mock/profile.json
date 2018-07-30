@@ -1,0 +1,47 @@
+{
+   "kind":"plus#person",
+   "occupation":"Example Occupation",
+   "gender":"male",
+   "emails":[
+      {
+         "value":"example@gmail.com",
+         "type":"account"
+      }
+   ],
+   "urls":[
+      {
+         "value":"http://www.example.net/",
+         "type":"otherProfile",
+         "label":"User"
+      }
+   ],
+   "objectType":"person",
+   "id":"111111111111111111111",
+   "displayName":"John Doe",
+   "name":{
+      "familyName":"Doe",
+      "givenName":"John"
+   },
+   "url":"https://plus.google.com/+JohnDoe",
+   "image":{
+      "url":"https://lh5.googleusercontent.com/-AAAAA-AAAAA/AAAAAAAAAAA/AAAAAAAAAAA/AAAAAAAAAAA/photo.jpg?sz=50",
+      "isDefault":false
+   },
+   "organizations":[
+      {
+         "name":"School of Learning",
+         "type":"school",
+         "primary":false
+      }
+   ],
+   "placesLived":[
+      {
+         "value":"Los Angeles, CA",
+         "primary":true
+      }
+   ],
+   "isPlusUser":true,
+   "language":"en",
+   "circledByCount":77,
+   "verified":false
+}

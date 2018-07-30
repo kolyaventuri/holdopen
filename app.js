@@ -15,6 +15,8 @@ var createError = require('http-errors');
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+
 
 require('./db/mongo');
 
@@ -22,6 +24,8 @@ const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api');
 
 var app = express();
+
+app.use(session({secret: process.env.SESSION_SECRET || 'generictoken001' }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,6 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+require('./app/services/passport')(app);
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
