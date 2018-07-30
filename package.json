@@ -7,7 +7,9 @@
     "test": "mocha ./spec/helpers/test_setup.js --require ./spec/helpers/spec_helper.js --recursive \"./spec/**/*.spec.js\" --exit --timeout 10000",
     "test:single": "mocha ./spec/helpers/test_setup.js --require ./spec/helpers/spec_helper.js --exit --timeout 10000",
     "spark:pull": "node ./tasks/spark/pull-homes",
-    "spark:destroy": "node ./tasks/spark/destroy-homes"
+    "spark:destroy": "node ./tasks/spark/destroy-homes",
+    "dev-start": "webpack --progress --colors --hot --inline",
+    "build": "webpack --config ./webpack.deployment.config.js --progress --colors"
   },
   "dependencies": {
     "bulma": "^0.7.1",
@@ -25,10 +27,18 @@
     "passport-google-oauth": "^1.0.0",
     "passport-mocked": "^1.2.0",
     "pug": "2.0.0-beta11",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-google-maps": "^9.4.5",
     "request": "^2.87.0",
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "chai": "^4.1.2",
     "chai-cheerio": "^1.0.0",
     "chai-http": "^4.0.0",
@@ -37,8 +47,13 @@
     "mocha": "^5.2.0",
     "node-mocks-http": "^1.7.0",
     "pryjs": "^1.0.3",
+    "react-hot-loader": "^4.3.4",
     "sinon": "^6.1.4",
     "sinon-chai": "^3.2.0",
-    "sinon-express-mock": "^2.0.5"
+    "sinon-express-mock": "^2.0.5",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-middleware": "^3.1.3",
+    "webpack-hot-middleware": "^2.22.3"
   }
 }
