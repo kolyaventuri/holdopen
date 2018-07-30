@@ -1,13 +1,11 @@
-const DashboardController = require('../../../../app/controllers/dashboard-controller');
-
 describe('Accessing the dashboard as an authenticated user', () => {
   before(() => {
     app.request.isAuthenticated = sinon.stub().returns(true);
-    app.request.user = sinon.mock(require('./mock/profile'));
+    app.request.user = require('./mock/profile');
   });
 
   after(() => {
-    app.request.user.restore();
+    app.request.user = null;
   });
 
 
