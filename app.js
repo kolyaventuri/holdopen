@@ -17,7 +17,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 
-
 require('./db/mongo');
 
 const indexRouter = require('./routes/index');
@@ -25,6 +24,21 @@ const apiRouter = require('./routes/api');
 
 var sassMiddleware = require('node-sass-middleware');
 var app = express();
+
+
+if (process.env.NODE_ENV !== 'production') {
+  const webpack = require('webpack');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const config = require('./webpack.config.js');
+  const compiler = webpack(config);
+
+  app.use(webpackHotMiddleware(compiler));
+  app.use(webpackDevMiddleware(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath
+  }));
+}
 
 app.use(session({secret: process.env.SESSION_SECRET || 'generictoken001' }));
 
