@@ -6,7 +6,7 @@ describe('Accessing the dashboard as an unauthenticated user', () => {
         expect(err).to.be.null;
         expect(res).to.redirect;
 
-        expect(res.req.path).to.eq('/login');
+        expect(res.req.path).to.eq('/');
 
         done();
       });

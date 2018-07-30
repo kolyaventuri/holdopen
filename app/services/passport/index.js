@@ -52,7 +52,7 @@ module.exports = (app) => {
     passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 
   app.get('/auth/google/callback',
-    passport.authenticate('google', { successReturnToOrRedirect: '/dashboard', failureRedirect: '/login' }),
+    passport.authenticate('google', { successReturnToOrRedirect: '/dashboard', failureRedirect: '/' }),
     (req, res) => {
 
       res.redirect('/');

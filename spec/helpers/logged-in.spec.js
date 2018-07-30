@@ -29,7 +29,7 @@ describe('Logged in', () => {
 
     expect(next).to.not.have.been.called;
 
-    expect(res.redirect).to.have.been.calledWith('/login')
+    expect(res.redirect).to.have.been.calledWith('/')
 
   });
 });
