@@ -1,6 +1,13 @@
+const loggedIn = require('../../../../app/helpers/logged-in');
+
+const helpers = { loggedIn };
 
 describe('Accessing an authenticated endpoint', () => {
   before(() => {
+  });
+
+  after(() => {
+    this.loggedIn.restore();
   });
 
   it('shows me my name', (done) => {
