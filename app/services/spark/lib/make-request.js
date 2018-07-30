@@ -24,7 +24,6 @@ const makeRequest = async (endpoint, opts) => {
 
   opts['ApiSig']    = signature;
   opts['AuthToken'] = token.token;
-
   return await API.get(endpoint, opts);
 };
 
