@@ -1,25 +1,24 @@
-const loggedIn = require('../../../../app/helpers/logged-in');
-
-const helpers = { loggedIn };
+const DashboardController = require('../../../../app/controllers/dashboard-controller');
 
 describe('Accessing an authenticated endpoint', () => {
   before(() => {
+    this.req = httpMocks.createRequest({
+      isAuthenticated: sinon.stub().returns(true),
+      user: require('./mock/profile')
+    });
+
+    this.res = httpMocks.createResponse({
+      eventEmitter: require('events').EventEmitter
+    });
   });
 
-  after(() => {
-    this.loggedIn.restore();
-  });
 
-  it('shows me my name', (done) => {
-    chai.request(app)
-      .get('/dashboard')
-      .end((err, res) => {
-        expect(err).to.be.null;
-        expect(res).to.have.status(200);
+  it('shows me my name', () => {
 
-        let $ = cheerio.load(res.body);
+    DashboardController.index(this.req, this.res);
 
-        expect($('body')).to.have.text('Welcome, John Doe')
-      });
+    let rendered = this.res.render(this.res._getRenderView(), this.res._getRenderData());
+
+    expect(this.res._getRenderData().user).to.be.an('object');
   });
 });
