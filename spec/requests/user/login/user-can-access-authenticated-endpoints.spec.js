@@ -1,24 +1,28 @@
 const DashboardController = require('../../../../app/controllers/dashboard-controller');
 
-describe('Accessing an authenticated endpoint', () => {
+describe('Accessing the dashboard as an authenticated user', () => {
   before(() => {
-    this.req = httpMocks.createRequest({
-      isAuthenticated: sinon.stub().returns(true),
-      user: require('./mock/profile')
-    });
+    app.request.isAuthenticated = sinon.stub().returns(true);
+    app.request.user = sinon.mock(require('./mock/profile'));
+  });
 
-    this.res = httpMocks.createResponse({
-      eventEmitter: require('events').EventEmitter
-    });
+  after(() => {
+    app.request.user.restore();
   });
 
 
-  it('shows me my name', () => {
+  it('shows me my name', (done) => {
+    chai.request(app)
+      .get('/dashboard')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(200);
 
-    DashboardController.index(this.req, this.res);
+        let $ = cheerio.load(res.text);
 
-    let rendered = this.res.render(this.res._getRenderView(), this.res._getRenderData());
+        expect($('body')).to.contain('Welcome, John Doe');
 
-    expect(this.res._getRenderData().user).to.be.an('object');
+        done();
+      });
   });
 });
