@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  section.hero.is-info.is-medium.is-bold
+    .hero-head
+      include ../partials/navbar
+    .hero-body
+      .container
+        .columns
+          .column.is-one-third
+            h1.title HoldOpen.
+            h2.subtitle Bidding, for open homes.
+          .column.is-two-thirds
+
+  section.container
+    .columns.is-multiline.is-centered#featuredHomes
+

@@ -1,6 +1,6 @@
 class WelcomeController {
   static index(req, res, next) {
-    res.render('index', { title: 'HoldOpen' });
+    res.render('welcome/index', { title: 'HoldOpen', user: req.user });
   }
 }
 
