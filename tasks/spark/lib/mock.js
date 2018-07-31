@@ -4,8 +4,10 @@ const MockHome = require('../../../spec/helpers/mock/home');
 
 let total = 0;
 let totalPulled = 0;
+let doExit = true;
 
-const start = async (number, page) => {
+const start = async (number, forceStayOpen) => {
+  doExit = !forceStayOpen;
   try {
     await mongoose.dropCollection('listings');
   } catch(err) {
@@ -26,6 +28,7 @@ const mock = async (number) => {
 };
 
 const stop = () => {
+  if(!doExit) return;
   console.log(`[${total} / ${total}] (100%)`);
   console.log('All done!');
   process.exit(0);
