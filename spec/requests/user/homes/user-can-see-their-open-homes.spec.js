@@ -26,14 +26,14 @@ describe('As an authenticated user', () => {
     this.sandbox.restore();
   });
 
-  it('I can see open homes I have saved', (done) => {
+  it('I can see open homes I have listed', (done) => {
     chai.request(app)
-      .get('/api/v1/openhomes/my')
+      .get('/api/v1/openhomes/my/requests')
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
 
-        execpt(res.body).to.be.an('object');
+        expect(res.body).to.be.an('object');
 
         let body = res.body;
 
