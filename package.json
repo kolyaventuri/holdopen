@@ -8,6 +8,7 @@
     "test:single": "mocha ./spec/helpers/test_setup.js --require ./spec/helpers/spec_helper.js --exit --timeout 10000",
     "spark:pull": "node ./tasks/spark/pull-homes",
     "spark:destroy": "node ./tasks/spark/destroy-homes",
+    "spark:mock": "node ./tasks/spark/mock",
     "dev-start": "webpack --progress --colors --hot --inline",
     "build": "webpack --config ./webpack.deployment.config.js --progress --colors"
   },

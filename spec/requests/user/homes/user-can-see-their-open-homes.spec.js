@@ -1,4 +1,5 @@
-const Listing = require('../../../app/models/listing');
+const Listing = require('../../../../app/models/listing');
+const Mockhome = require('../../../helpers/mock/home');
 
 describe('As an authenticated user', () => {
   before(() => {
@@ -7,7 +8,6 @@ describe('As an authenticated user', () => {
 
     app.request.user = require('../login/mock/profile');
 
-    //this.property = await Listing.create();
   });
 
   after(() => {
@@ -32,4 +32,5 @@ describe('As an authenticated user', () => {
         expect(results[0]).to.have.property('MLSId').that.eqls(this.property.MLSId);
         done();
       });
+  });
 });

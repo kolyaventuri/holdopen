@@ -2,6 +2,8 @@ const template = require('./template');
 const faker = require('faker');
 
 
+const zipCodes = ['87114', '87120', '87048', '87110'];
+
 class MockHome {
   static raw() {
     return template;
@@ -12,6 +14,8 @@ class MockHome {
 
     home.StandardFields.City = faker.address.city();
     home.StandardFields.CountyOrParish = faker.address.county();
+
+    home.StandardFields.PostalCode = zipCodes[~~(Math.random() * zipCodes.length)]
 
     home.StandardFields.ListAgentName = faker.fake('{{name.firstName}} {{name.lastName}}');
 

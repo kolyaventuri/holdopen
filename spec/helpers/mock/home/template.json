@@ -792,7 +792,7 @@
                 "View" : "Summary",
                 "IDXLogo" : {
                         "Type" : "Text",
-                        "LogoUri" : "Dummyy Real Estate Company"
+                        "LogoUri" : "Dummy Real Estate Company"
                 },
                 "IDXLogoSmall" : {
                         "Type" : "Text",
