@@ -36,9 +36,10 @@ describe('As an authenticated user', () => {
 
         expect(res.body).to.have.property('success').that.is.true;
 
-        let result = db.collection('openhomes').findOne({ listing: this.propertyA._id });
+        let result = OpenHome.findOne({ listing: this.propertyA._id });
 
-        result.then(data => {
+        result.then((data) => {
+
           expect(data).to.not.be.null;
           expect(data).to.be.an('object');
           expect(data).to.have.property('owner').that.eqls(this.owner._id);
