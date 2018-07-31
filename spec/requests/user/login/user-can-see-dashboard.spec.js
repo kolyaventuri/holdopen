@@ -1,13 +1,13 @@
 describe('Accessing the dashboard as an authenticated user', () => {
   
-  before(() => {
+  beforeEach(() => {
     this.sandbox = sinon.createSandbox();
     this.sandbox.stub(app.request, 'isAuthenticated').returns(true);
 
     app.request.user = require('./mock/profile');
   });
 
-  after(() => {
+  afterEach(() => {
     this.sandbox.restore();
   });
 
