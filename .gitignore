@@ -82,3 +82,4 @@ typings/
 .travis/*.key
 .travis/*.key.pub*.env 
 *#.*
+**/*.#.*
