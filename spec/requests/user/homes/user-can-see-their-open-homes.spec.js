@@ -1,5 +1,7 @@
 const Listing = require('../../../../app/models/listing');
-const OpenHome = require('../../../../app/models/open-home')
+const OpenHome = require('../../../../app/models/open-home');
+const User = require('../../../../app/models/user');
+
 const MockHome = require('../../../helpers/mock/home');
 
 describe('As an authenticated user', () => {
@@ -9,9 +11,15 @@ describe('As an authenticated user', () => {
 
     app.request.user = require('../login/mock/profile');
 
+    let owner = await User.create(app.request.user);
+
     this.propertyA = await Listing.create(MockHome.random());
     this.propertyB = await Listing.create(MockHome.random());
 
+    await OpenHome.create({
+      listing: this.propertyA,
+      owner
+    });
   });
 
   after(() => {
