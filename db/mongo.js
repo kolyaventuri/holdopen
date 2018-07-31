@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
+
+let mongoUrl;
+if(process.env.NODE_ENV === 'test') {
+  console.warn('Connecting to TEST database');
+  mongoUrl = 'mongodb://127.0.0.1:27017/holdopen_test';
+} else {
+  mongoUrl = process.env.MONGO_URL;
+}
+
+mongoose.connect(mongoUrl, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 

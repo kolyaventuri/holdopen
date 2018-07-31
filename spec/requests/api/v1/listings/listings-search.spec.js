@@ -1,5 +1,25 @@
+const Listing = require('../../../../../app/models/listing');
+const MockHome = require('../../../../helpers/mock/home');
+
 describe('A GET request to /api/v1/listings', () => {
   let firstHome = null;
+
+  before(() => {
+    this.listings = [];
+    for(let i = 0; i < 30; i++) {
+      // It confounds me why this would fix an issue where all array
+      // values became the same. My buest guess is some sort of
+      // "under the hood" pointer issue. I just know it works.
+      this.listings.push(() => MockHome.random());
+    }
+
+  });
+
+  beforeEach(async () => {
+    for(let listing of this.listings) {
+      await Listing.create(listing.call());
+    }
+  });
 
   describe('with no pagination parameter', () => {
     it('returns the first 10 homes in the database', (done) => {
