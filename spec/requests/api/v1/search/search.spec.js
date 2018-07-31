@@ -1,9 +1,23 @@
+const Listing = require('../../../../../app/models/listing');
+const MockHome = require('../../../../helpers/mock/home');
+
 describe('An authenticated GET request to /api/v1/search', () => {
   let firstHome = null;
 
   before(() => {
     this.sandbox = sinon.sandbox.create();
     this.sandbox.stub(app.request, 'isAuthenticated').returns(true);
+
+    this.listings = [];
+    for(let i = 0; i < 30; i++) {
+      this.listings.push(() => MockHome.random());
+    }
+  });
+
+  beforeEach(async () => {
+    for(let listing of this.listings) {
+      await Listing.create(listing.call());
+    }
   });
 
   after(() => {
