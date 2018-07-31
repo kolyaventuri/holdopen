@@ -1,5 +1,14 @@
-describe('A GET request to /api/v1/search', () => {
+describe('An authenticated GET request to /api/v1/search', () => {
   let firstHome = null;
+
+  before(() => {
+    this.sandbox = sinon.sandbox.create();
+    this.sandbox.stub(app.request, 'isAuthenticated').returns(true);
+  });
+
+  after(() => {
+    this.sandbox.restore();
+  });
 
   describe('with no query', () => {
     it('returns an error', (done) => {
