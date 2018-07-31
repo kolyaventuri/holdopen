@@ -24,7 +24,7 @@ describe('As an authenticated user', () => {
 
   it('I can create an open home', (done) => {
     chai.request(app)
-      .post('/api/v1/openhomes/my/requests')
+      .post('/api/v1/openhomes/publish')
       .send({
         MLSId: this.propertyA.serialize().MLSId
       })
