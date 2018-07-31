@@ -16,10 +16,12 @@ describe('As an authenticated user', () => {
     this.propertyA = await Listing.create(MockHome.random());
     this.propertyB = await Listing.create(MockHome.random());
 
-    await OpenHome.create({
+
+    this.openhome = await OpenHome.create({
       listing: this.propertyA,
       owner
     });
+
   });
 
   after(() => {
@@ -37,13 +39,13 @@ describe('As an authenticated user', () => {
 
         let body = res.body;
 
-        let result = body.results;
+        let results = body.results;
 
         expect(results).to.be.an('array').with.lengthOf(1);
 
-        expect(results[0]).to.have.property('MLSId').that.eqls(this.propertyA.ListingId);
+        expect(results[0]).to.have.property('MLSId').that.eqls(this.propertyA.StandardFields.ListingId);
         for(let result of results) {
-          expect(result.MLSId).to.not.eql(this.propertyB.ListingId);
+          expect(result.MLSId).to.not.eql(this.propertyB.StandardFields.ListingId);
         }
         done();
       });

@@ -1,5 +1,4 @@
 {
-        "Id" : "xxx",
         "ResourceUri" : "/v1/listings/xxx",
         "StandardFields" : {
                 "AboveGradeFinishedArea" : null,
