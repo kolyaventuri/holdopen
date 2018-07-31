@@ -1,13 +1,15 @@
 const Listing = require('../../../../app/models/listing');
-const Mockhome = require('../../../helpers/mock/home');
+const MockHome = require('../../../helpers/mock/home');
 
 describe('As an authenticated user', () => {
-  before(() => {
+  before(async () => {
     this.sandbox = sinon.createSandbox();
     this.sandbox.stub(app.request, 'isAuthenticated').returns(true);
 
     app.request.user = require('../login/mock/profile');
 
+    this.propertyA = await Listing.create(MockHome.random());
+    this.propertyB = await Listing.create(MockHome.random());
   });
 
   after(() => {
@@ -29,7 +31,10 @@ describe('As an authenticated user', () => {
 
         expect(results).to.be.an('array').with.lengthOf(1);
 
-        expect(results[0]).to.have.property('MLSId').that.eqls(this.property.MLSId);
+        expect(results[0]).to.have.property('MLSId').that.eqls(this.propertyA.ListingId);
+        for(let result of results) {
+          expect(result.MLSId).to.not.eql(this.propertyB.ListingId);
+        }
         done();
       });
   });
