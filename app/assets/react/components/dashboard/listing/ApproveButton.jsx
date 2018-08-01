@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ClaimButton extends React.Component {
+export default class ApproveButton extends React.Component {
     constructor(props) {
         super(props);
 
@@ -23,7 +23,6 @@ export default class ClaimButton extends React.Component {
         }).then(response => {
             return response.json();
         }).then(data => {
-            import ClaimButton from './listing/ClaimButton.jsx'
             if(data.success) {
                 this.setState({ done: true });
             } else {

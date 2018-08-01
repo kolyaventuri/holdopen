@@ -21,8 +21,8 @@ class Approval extends React.Component {
             if(!results) return;
 
             let listings = results.map(data => {
+                if(data.bids.length < 1) return;
                 let home = data.listing;
-                console.log(data)
                 return {
                     claim_id: data.bids[0]._id,
                     id: home.MLSId,
@@ -54,6 +54,7 @@ class Approval extends React.Component {
                     <div className='column is-two-thirds'>
                         {
                             this.state.listings.map(listing => {
+                                if(!listing) return;
                                 let key = Math.random().toString(36);
                                 return (<Listing {...listing} key={key} />);
                             })
