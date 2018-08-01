@@ -4,7 +4,7 @@ const User = require('../../../../app/models/user');
 
 const MockHome = require('../../../helpers/mock/home');
 
-describe('As an authenticated user', () => {
+xdescribe('As an authenticated user', () => {
   beforeEach(async () => {
     this.sandbox = sinon.createSandbox();
     this.sandbox.stub(app.request, 'isAuthenticated').returns(true);
