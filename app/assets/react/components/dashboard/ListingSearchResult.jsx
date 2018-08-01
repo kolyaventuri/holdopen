@@ -5,14 +5,17 @@ import BasicInfo from './listing/BasicInfo.jsx'
 import BedsBaths from './listing/BedsBaths.jsx'
 import ListAsOpenButton from './listing/ListAsOpenButton.jsx'
 import ClaimButton from './listing/ClaimButton.jsx'
+import ApproveButton from './listing/ApproveButton.jsx'
 
 const Listing = (props) => {
     let button;
 
-    if(!props.marketplace) {
+    if(!props.marketplace && !props.approval) {
         button = <ListAsOpenButton { ...props } />
-    } else {
+    } else if(props.marketplace) {
         button = <ClaimButton { ...props } />
+    } else {
+        button = <ApproveButton { ...props } />
     }
     return (
         <div>

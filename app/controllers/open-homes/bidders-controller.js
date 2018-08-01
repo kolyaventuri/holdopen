@@ -11,7 +11,9 @@ class BidController {
     for(let i = 0; i < _homes.length; i++) {
       _homes[i].bids = await Bid.find({ openHome: _homes[i] }).populate('bidder');
 
-      _homes[i].bids = _homes[i].bids.map(bid => bid.bidder);
+      _homes[i].bids = _homes[i].bids.map(bid => {
+        return bid;
+      });
     }
 
     let homes = _homes.map(home => {

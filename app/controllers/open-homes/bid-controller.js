@@ -49,6 +49,12 @@ class BidController {
 
     await bid.save();
 
+    let others = await Bid.find({ listing: bid.listing._id, approved: false });
+
+    for(let _bid of others) {
+      await bid.remove();
+    }
+
     res.json({ success: true });
   }
 
