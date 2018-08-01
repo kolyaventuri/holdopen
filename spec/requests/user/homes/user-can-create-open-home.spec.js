@@ -38,16 +38,18 @@ describe('As an authenticated user', () => {
 
         let result = OpenHome.findOne({ listing: this.propertyA._id });
 
-        result.then((data) => {
+        db.collection('openhomes').findOne({ listing: this.propertyA._id })
+          .then(data => {
+            expect(data).to.not.be.null;
+            expect(data).to.be.an('object');
+            expect(data).to.have.property('owner').that.eqls(this.owner._id);
 
-          expect(data).to.not.be.null;
-          expect(data).to.be.an('object');
-          expect(data).to.have.property('owner').that.eqls(this.owner._id);
+            done();
+          })
+          .catch(err => {
+            done(err);
+          });
 
-          done();
-        }).catch(err => {
-          done(err);
-        });
       });
   });
 });
