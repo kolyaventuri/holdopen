@@ -28,9 +28,10 @@ describe('As an authenticated user', () => {
     this.sandbox.restore();
   });
 
-  it('I can see open homes I have listed', (done) => {
+  it('I can delete an open home I have listed', (done) => {
     chai.request(app)
       .delete('/api/v1/openhomes/my/delete')
+      .send({ MLSId: this.propertyA.StandardFields.ListingId })
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);

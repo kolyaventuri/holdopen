@@ -13,14 +13,14 @@ describe('As an authenticated user', () => {
     app.request.user = {};
 
     await User.create(app.request.user);
-    let owner = await User.create(require('../login/mock/profile'));
+    this.owner = await User.create(require('../login/mock/profile'));
 
     this.propertyA = await Listing.create(MockHome.random());
     this.propertyB = await Listing.create(MockHome.random());
 
     this.openhome = await OpenHome.create({
       listing: this.propertyA,
-      owner
+      owner: this.owner
     });
 
   });
@@ -29,9 +29,10 @@ describe('As an authenticated user', () => {
     this.sandbox.restore();
   });
 
-  it('I can see open homes I have listed', (done) => {
+  it('I cannot delete an open home I haven\'t listed', (done) => {
     chai.request(app)
       .delete('/api/v1/openhomes/my/delete')
+      .send({ MLSId: this.propertyA.StandardFields.ListingId })
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(400);
