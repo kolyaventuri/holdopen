@@ -10,6 +10,10 @@ const attributeMap = {
   'GarageSpaces': 'GarageSpaces',
   'LotSizeAcres': 'LotSizeAcres',
   'BuildingAreaTotal': 'Sqft',
+
+  'Latitude': 'Latitude',
+  'Longitude': 'Longitude',
+
   'Photos': [
     {
       'Name': 'Name',

@@ -22,6 +22,14 @@ nav.navbar.is-transparent
         .navbar-item.has-dropdown.is-hoverable
           a.navbar-link Welcome, #{user.displayName}
           .navbar-dropdown.is-right.has-text-grey
+            a.navbar-item(href='/dashboard')
+              span.icon.is-small
+                i.far.fa-columns
+              span &nbsp;Dashboard
+            a.navbar-item(href='/marketplace')
+              span.icon.is-small
+                i.far.fa-shopping-basket
+              span &nbsp;Marketplace
             a.navbar-item(href='/logout')
               span.icon.is-small
                 i.far.fa-sign-out

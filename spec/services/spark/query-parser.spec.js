@@ -11,7 +11,7 @@ describe('QueryParser', () => {
 
     it('treats other things like a partial address', () => {
       let result = QueryParser.parse('other');
-      let expected = { 'StandardFields.UnparsedAddress': /.*other.*/ };
+      let expected = { 'StandardFields.UnparsedAddress': /.*other.*/gi };
 
       expect(result).to.eql(expected);
     });

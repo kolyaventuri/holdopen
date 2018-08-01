@@ -6,7 +6,7 @@ class BidController {
   static async index(req, res, next) {
     let bidder = await User.findOne({ googleId: req.user.googleId });
 
-    let bids = await Bid.find({ bidder }).deepPopulate('openHome.listing');
+    let bids = await Bid.find({ bidder, approved: false }).deepPopulate('openHome.listing');
 
     let resultingBids = bids.map(bid => {
       return {
