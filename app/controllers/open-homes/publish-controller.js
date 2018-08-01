@@ -7,6 +7,8 @@ class RequestController {
     let owner = await User.findOne({ googleId: req.user.googleId });
     let listing = await Listing.findOne({ 'StandardFields.ListingId': req.body.MLSId });
 
+    console.log(req.body, owner, listing)
+
     if(!owner || !listing) {
       return res.json({success: false});
     }
