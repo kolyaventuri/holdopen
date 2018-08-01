@@ -41,6 +41,8 @@ class BidController {
 
     let bid = await Bid.findOne({ _id: req.body.id }).deepPopulate('openHome.owner');
 
+    console.log(owner, bid, req.body)
+
     if(!owner || !bid || !bid.openHome.owner.equals(owner)) return res.json({ success: false });
 
     delete req.body.id;

@@ -5,6 +5,7 @@ import BasicInfo from './listing/BasicInfo.jsx'
 import BedsBaths from './listing/BedsBaths.jsx'
 import ListAsOpenButton from './listing/ListAsOpenButton.jsx'
 import ClaimButton from './listing/ClaimButton.jsx'
+import ApproveButton from './listing/AppoveButton.jsx'
 
 const Listing = (props) => {
     let button;
