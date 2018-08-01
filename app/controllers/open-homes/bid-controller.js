@@ -51,6 +51,18 @@ class BidController {
 
     res.json({ success: true });
   }
+
+  static async destroy(req, res, next) {
+    let bidder = await User.findOne({ googleId: req.user.googleId });
+
+    let bid = await Bid.findOne({ _id: req.body.id, bidder });
+
+    if(!bidder || !bid) return res.json({ success: false });
+
+    await bid.remove();
+
+    res.json({ success: true });
+  }
 }
 
 module.exports = BidController;

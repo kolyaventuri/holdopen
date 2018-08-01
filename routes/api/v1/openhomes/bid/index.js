@@ -8,5 +8,6 @@ router.use('*', loggedIn);
 
 router.post('/', OpenHomesBidController.create);
 router.put('/', OpenHomesBidController.update);
+router.delete('/', OpenHomesBidController.destroy)
 
 module.exports = router;

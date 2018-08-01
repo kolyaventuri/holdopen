@@ -10,7 +10,9 @@ describe('As an authenticated user', () => {
     this.sandbox = sinon.createSandbox();
     this.sandbox.stub(app.request, 'isAuthenticated').returns(true);
 
-    let secondUser = Object.assign({ googleId: '222' }, require('../login/mock/profile'));
+    let secondUser = Object.assign({}, require('../login/mock/profile'));
+    secondUser.googleId = 222;
+
     this.owner = await User.create(secondUser);
 
     app.request.user = require('../login/mock/profile');
