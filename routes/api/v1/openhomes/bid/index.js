@@ -7,5 +7,6 @@ const loggedIn = require('../../../../../app/helpers/logged-in/hard-fail');
 router.use('*', loggedIn);
 
 router.post('/', OpenHomesBidController.create);
+router.put('/', OpenHomesBidController.update);
 
 module.exports = router;

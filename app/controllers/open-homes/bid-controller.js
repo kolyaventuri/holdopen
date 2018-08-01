@@ -35,6 +35,22 @@ class BidController {
 
     res.json({ success: true });
   }
+
+  static async update(req, res, next) {
+    let owner = await User.findOne({ googleId: req.user.googleId });
+
+    let bid = await Bid.findOne({ _id: req.body.id }).deepPopulate('openHome.owner');
+
+    if(!owner || !bid || !bid.openHome.owner.equals(owner)) return res.json({ success: false });
+
+    delete req.body.id;
+
+    if(typeof req.body.approved === 'boolean') bid.approved = !!req.body.approved;
+
+    await bid.save();
+
+    res.json({ success: true });
+  }
 }
 
 module.exports = BidController;
