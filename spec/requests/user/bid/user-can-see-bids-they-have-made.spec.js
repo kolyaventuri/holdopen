@@ -56,8 +56,10 @@ describe('As an authenticated user', () => {
 
         expect(results).to.be.an('array');
 
-        expect(results[0]).to.have.property('MLSId').that.eqls(this.propertyA.StandardFields.ListingId);
-        expect(results[1]).to.have.property('MLSId').that.eqls(this.propertyB.StandardFields.ListingId);
+        expect(results[0]).to.have.property('listing');
+
+        expect(results[0].listing).to.have.property('MLSId').that.eqls(this.propertyA.StandardFields.ListingId);
+        expect(results[1].listing).to.have.property('MLSId').that.eqls(this.propertyB.StandardFields.ListingId);
 
         done();
       });

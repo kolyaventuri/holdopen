@@ -3,6 +3,23 @@ const User = require('../../models/user');
 const Bid = require('../../models/bid');
 
 class BidController {
+  static async index(req, res, next) {
+    let bidder = await User.findOne({ googleId: req.user.googleId });
+
+    let bids = await Bid.find({ bidder }).deepPopulate('openHome.listing');
+
+    let resultingBids = bids.map(bid => {
+      return {
+        id: bid._id,
+        listing: bid.openHome.listing.serialize()
+      }
+    });
+
+    res.json({
+      results: resultingBids
+    });
+  }
+
   static async create(req, res, next) {
     let bidder = await User.findOne({ googleId: req.user.googleId });
     let openHome = await OpenHome.findOne({ _id: req.body.id });

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 const bidSchema = new mongoose.Schema({
   openHome: {
@@ -13,5 +14,7 @@ const bidSchema = new mongoose.Schema({
     required: true
   }
 });
+
+bidSchema.plugin(deepPopulate);
 
 module.exports = mongoose.model('Bid', bidSchema);
