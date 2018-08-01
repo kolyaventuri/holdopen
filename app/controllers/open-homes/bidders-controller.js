@@ -12,10 +12,7 @@ class BidController {
       _homes[i].bids = await Bid.find({ openHome: _homes[i] }).populate('bidder');
 
       _homes[i].bids = _homes[i].bids.map(bid => {
-        return {
-          id: bid._id,
-          bidder: bid.bidder
-        }
+        return bid;
       });
     }
 
