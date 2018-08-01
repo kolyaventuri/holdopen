@@ -11,7 +11,12 @@ class OpenHomesController {
         .populate(['listing', 'owner']);
 
     openHomes = openHomes.map(openHome => {
-      openHome.listing = openHome.listing.serialize()
+      openHome.listing = openHome.listing.serialize();
+
+      openHome.owner = {
+        displayName: openHome.owner._doc.displayName
+      };
+
 
       return openHome;
     });
