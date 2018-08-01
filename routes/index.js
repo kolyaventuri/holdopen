@@ -7,5 +7,6 @@ const WelcomeController = require('../app/controllers/welcome-controller');
 router.get('/', WelcomeController.index);
 
 router.use('/dashboard', require('./dashboard'));
+router.use('/marketplace', require('./marketplace'));
 
 module.exports = router;
