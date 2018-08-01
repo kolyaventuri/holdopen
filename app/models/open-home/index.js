@@ -24,9 +24,14 @@ const openHomeSchema = new mongoose.Schema({
     ref: 'Bid'
   }],
 
-  startTime: Date,
-  endTime: Date
+  startTime: Number,
+  endTime: Number
 });
+
+openHomeSchema.statics.dateRange = async function(start, end) {
+  eval(pry.it)
+  return await this.find({ startTime: { $gte: start }})
+};
 
 openHomeSchema.plugin(deepPopulate);
 
