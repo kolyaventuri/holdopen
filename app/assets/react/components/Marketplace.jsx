@@ -37,6 +37,8 @@ class Marketplace extends React.Component {
                     marketplace: true
                 }
             });
+
+            listings = listings.filter(l => l != null);
             this.setState((prevState) => {
                 return { listings };
             });
