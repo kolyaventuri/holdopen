@@ -22,6 +22,7 @@ class Approval extends React.Component {
 
             let listings = results.map(data => {
                 if(data.bids.length < 1) return;
+                console.log(data);
                 let home = data.listing;
                 return {
                     claim_id: data.bids[0]._id,
