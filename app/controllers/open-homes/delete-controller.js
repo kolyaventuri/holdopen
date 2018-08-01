@@ -14,6 +14,8 @@ class RequestController {
 
     if(!openHome) return res.status(400).json({ success: false });
 
+    await openHome.remove();
+
     res.json({ success: true });
   }
 }
