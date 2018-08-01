@@ -12,7 +12,7 @@ describe('As an authenticated user', () => {
 
     app.request.user = Object.assign({ googleId: '222' }, require('../login/mock/profile'));
 
-    this.claimer = await User.create(app.request.user);
+    this.bidder = await User.create(app.request.user);
     let owner = await User.create(require('../login/mock/profile'));
 
     this.propertyA = await Listing.create(MockHome.random());
@@ -34,20 +34,21 @@ describe('As an authenticated user', () => {
     chai.request(app)
       .post('/api/v1/openhomes/bid')
       .send({ id: this.openhome._id })
-      .end((err, res) => {
+      .end(async (err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
 
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('success')
-
-        let result = Bid.findOne({ open: this.openhome._id });
-
-        expect(result).to.not.be.null;
-        expect(result).to.be.an('object');
-        expect(result).to.have.property('claimee').that.eqls(this.claimer._id);
-
-        done();
+        Bid.findOne({ openHome: this.openhome._id })
+          .then(result => {
+            expect(result).to.not.be.null;
+            expect(result).to.be.an('object');
+            expect(result).to.have.property('bidder').that.eqls(this.bidder._id);
+            done();
+          }).catch(err => {
+            done(err);
+          });
       });
   });
 });

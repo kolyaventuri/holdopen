@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const bidSchema = new mongoose.Schema({
-  listing: {
+  openHome: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Listing',
+    ref: 'OpenHome',
     required: true
   },
 
