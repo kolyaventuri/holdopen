@@ -7,5 +7,7 @@ router.use('*', loggedIn);
 
 router.use('/requests', require('./requests'));
 router.use('/delete', require('./delete'));
+router.use('/bids', require('./bids'));
+router.use('/bidders', require('./bidders'));
 
 module.exports = router;
