@@ -15,9 +15,6 @@ class SearchForm extends React.Component {
                             <input type='text' name='q' placeholder='Search for a home' className='input' onKeyPress={this.props.handleKeyPress} />
                         </Throttle>
                     </div>
-                    <div className='control'>
-                        <a className='button is-primary'>Search</a>
-                    </div>
                 </div>
             </div>
         )

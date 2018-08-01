@@ -1,0 +1,24 @@
+$animationWhite: #FFF;
+$animationGrey: #CCC;
+$animationSpeed: 2s;
+
+@-webkit-keyframes animatedLoader {
+    from{background-position: 0 0;}
+    to{background-position: -200% 0; }
+}
+@-moz-keyframes animatedLoader {
+    from{background-position: 0 0;}
+    to{background-position: -200% 0; }
+}
+@keyframes animatedLoader {
+    from{background-position: 0 0;}
+    to{background-position: -200% 0; }
+}
+
+@mixin loadingIndefinite {
+    background: linear-gradient(90deg, $animationWhite, $animationGrey, $animationWhite);
+    background-size: 400% 400%;
+    -webkit-animation: animatedLoader $animationSpeed ease infinite;
+    -moz-animation: animatedLoader $animationSpeed ease infinite;
+    animation: animatedLoader $animationSpeed ease infinite;
+}
