@@ -7,7 +7,7 @@ class QueryParser {
       return { 'StandardFields.PostalCode': query };
     }
 
-    let regexQuery = new RegExp(`.*${query}.*`);
+    let regexQuery = new RegExp(`.*${query}.*`, 'gi');
     return { 'StandardFields.UnparsedAddress': regexQuery };
   }
 }

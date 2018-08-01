@@ -1,1 +1,25 @@
-@import "../../node_modules/bulma/bulma"
+@import "../../node_modules/bulma/bulma";
+@import "animations/_loading";
+
+    .home {
+        .hero {
+            width: 100%;
+            height: 100%;
+            height: 150px;
+        }
+
+        &.loading {
+            .hero {
+                @include loadingIndefinite;
+            }
+
+            .info {
+                color: rgba(0,0,0,0);
+
+                p {
+                    margin: 0.25em;
+                    @include loadingIndefinite;
+                }
+            }
+        }
+    }
