@@ -9,8 +9,8 @@ module.exports = {
     './app/assets/react/index.js'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'public/javascripts/bundle.js',
+    path: path.join(__dirname, 'public/javascripts'),
+    filename: 'bundle.js',
     publicPath: '/javascripts/'
   },
 
